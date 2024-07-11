@@ -6,7 +6,7 @@ import os
 from ydfz.compressors import Compressor
 from ydfz.serializers import PickleSerializer, MsgpackSerializer, MetadataSerializer
 from ydfz.utils import SerializableBloomFilter, extract_null_mask, datetime_to_yyyymmdd, convert_to_categorical, \
-    CustomEncoder
+    CustomEncoder, EncodeFromNumpy
 
 
 class MappedFile:
@@ -153,6 +153,10 @@ class MappedDataFrame(MappedFile):
         if dtype in ["int64", "int32", "int16", "int8", "float64", "float32", "float16", "float8"]:
             non_null_data_ = non_null_data.astype(dtype).values
             data_bytes = non_null_data_.tobytes()
+        elif dtype in ["int"]:
+            non_null_data_ = non_null_data.astype("int").values
+            data_bytes = non_null_data_.tobytes()
+
         elif dtype == "datetime64[ns]":
             non_null_data_ = non_null_data.view('int64').values
             data_bytes = non_null_data_.tobytes()
@@ -202,6 +206,8 @@ class MappedDataFrame(MappedFile):
             full_data = np.full(series_len, False, dtype=bool)  # Default to False for boolean
         elif dtype == "datetime64[ns]":
             full_data = np.full(series_len, np.nan, dtype='datetime64[ns]')  # Use pd.NaT for datetime
+        elif dtype == "int":
+            full_data = np.full(series_len, np.nan, dtype='float')
         else:
             full_data = np.full(series_len, np.nan, dtype=dtype)  # For other types that support np.nan
 
@@ -217,6 +223,9 @@ class MappedDataFrame(MappedFile):
             category_list = [categories[i] for i in sorted(categories.keys())]
             category_array = pd.Categorical.from_codes(non_null_data, categories=category_list, ordered=True)
             full_data[valid_indices] = category_array
+        elif dtype == "int":
+            non_null_data = np.frombuffer(decompressed_data, dtype="int")
+            full_data[valid_indices] = non_null_data
         else:
             non_null_data = np.frombuffer(decompressed_data, dtype=dtype)
             full_data[valid_indices] = non_null_data
@@ -229,8 +238,7 @@ class MappedDataFrame(MappedFile):
         for index, partition in enumerate(self.partitions):
             if partition.get('shard') == shard_index:
                 series = self.read_series(index)
-
-                series = series.astype(partition.get('dtype'))
+                #series = series.astype(partition.get('dtype'))
                 shard_data.append(series)
                 column_names.append(partition.get('name'))
         df = pd.concat(shard_data, axis=1)
@@ -421,33 +429,15 @@ class PagedFile(MappedFile):
         self.page_count += 1
         self.file_metadata['page_count'] = self.page_count
 
-    def convert_values(self, dt, col):
-        print(col, dt, type(dt), str(dt) == 'nan')
-        if str(dt) == str(pd.NaT):
-            return None
-        if str(dt) == "nan":
-            return None
-        if type(dt) == pd.Timestamp:
-            return dt.strftime('%Y-%m-%d %H:%M:%S')
-
-        if col in self.schema:
-            if self.schema[col] == 'int':
-                return int(dt)
-            elif self.schema[col] == 'float':
-                return float(dt)
-            elif self.schema[col] == 'datetime64[ns]':
-                return dt.strftime('%Y-%m-%d %H:%M:%S')
-            elif self.schema[col] == 'bool':
-                return True if dt == 1 else False if dt == 0 else None
-        return dt
-
     def serialize_page(self, page_data):
         if self.format == 'json':
             import json
+            page_data = page_data.fillna("")
+            page_data["Transaction_ID"] = page_data["Transaction_ID"].astype("int")
             with open("sdsdqs.json", "w") as f:
-                page_data = page_data.fillna(value="")
-                json.dump(page_data.to_dict(orient='records'), f, cls=CustomEncoder, indent=4, allow_nan=False)
-            return json.dumps(page_data.to_dict(orient='records'), cls=CustomEncoder, allow_nan=False).encode('utf-8')
+
+                json.dump(page_data.to_dict(orient='records'), f, cls=EncodeFromNumpy, indent=4, allow_nan=None)
+            return json.dumps(page_data.to_dict(orient='records'), cls=EncodeFromNumpy, allow_nan=None).encode('utf-8')
         elif self.format == 'msgpack':
             import msgpack
             return msgpack.packb(page_data.to_dict(orient='records'))
