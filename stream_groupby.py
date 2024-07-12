@@ -64,13 +64,19 @@ def process_chunk(chunk, key, output_dir):
 
 # Example usage
 if __name__ == "__main__":
-    path = "large_dataset.csv"
-    key = "group_column"
+    # Example usage
+    directory_path = r'C:\Users\medzi\Desktop\bnp\ydfz\generated_test_files'
+    output_file = 'merged_output.csv'
+    num_splits = 4  # Number of smaller datasets
+
+    # Step 1: Get all files
+    input_files = [os.path.join(directory_path, f) for f in os.listdir(directory_path) if f.endswith('.csv')]
+    key = "name"
     output_dir = "output_groups"
     chunk_size = 1e6
 
     # If you want to use multiprocessing
-    with mp.Pool(processes=4) as pool:
-        stream_groupby_csv(path, key, output_dir, chunk_size, pool=pool)
+    #with mp.Pool(processes=4) as pool:
+    #    stream_groupby_csv(input_files, key, output_dir, chunk_size, pool=pool)
     # If you don't want to use multiprocessing
-    # stream_groupby_csv(path, key, output_dir, chunk_size)
+    stream_groupby_csv(input_files, key, output_dir, chunk_size)

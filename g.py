@@ -1,3 +1,5 @@
+from random import randint
+
 import pandas as pd
 import os
 
@@ -10,7 +12,7 @@ def generate_test_csv_files(num_files, num_rows, output_dir):
     base_data = {
         'id': range(1, num_rows + 1),
         'name': [f'name_{i}' for i in range(1, num_rows + 1)],
-        'value': [i * 10 for i in range(1, num_rows + 1)]
+        'value': [randint(0, 100) for i in range(1, num_rows + 1)]
     }
     base_df = pd.DataFrame(base_data)
 
@@ -30,6 +32,6 @@ def generate_test_csv_files(num_files, num_rows, output_dir):
 # Example usage
 output_directory = 'generated_test_files'
 num_files_to_generate = 4  # Number of test CSV files
-num_rows_per_file = 1000     # Number of rows per CSV file
+num_rows_per_file = 10     # Number of rows per CSV file
 
 generate_test_csv_files(num_files_to_generate, num_rows_per_file, output_directory)
