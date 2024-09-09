@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1070</width>
+    <height>838</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="mainVerticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="mainHorizontalLayout">
+      <item>
+       <widget class="QGroupBox" name="groupBoxMainText">
+        <property name="title">
+         <string>Main Text</string>
+        </property>
+        <layout class="QVBoxLayout" name="mainTextVerticalLayout">
+         <item>
+          <widget class="QWidget" name="mainTextWidget" native="true">
+           <layout class="QHBoxLayout" name="mainTextHorizontalLayout">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLineEdit" name="lineEditMainText"/>
+            </item>
+            <item>
+             <widget class="QPushButton" name="openMainTextButton">
+              <property name="text">
+               <string>Open</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="reloadMainTextButton">
+              <property name="text">
+               <string>Reload</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinBoxMainTextLimit">
+              <property name="maximum">
+               <number>100000</number>
+              </property>
+              <property name="value">
+               <number>10000</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTextEdit" name="textEditMainText">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>300</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBoxAlternativeText">
+        <property name="title">
+         <string>Alternative Text</string>
+        </property>
+        <layout class="QVBoxLayout" name="alternativeTextVerticalLayout">
+         <item>
+          <widget class="QWidget" name="alternativeTextWidget" native="true">
+           <layout class="QHBoxLayout" name="alternativeTextHorizontalLayout">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLineEdit" name="lineEditAlternativeText"/>
+            </item>
+            <item>
+             <widget class="QPushButton" name="openAlternativeTextButton">
+              <property name="text">
+               <string>Open</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="reloadAlternativeTextButton">
+              <property name="text">
+               <string>Reload</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinBoxAlternativeTextLimit">
+              <property name="maximum">
+               <number>100000</number>
+              </property>
+              <property name="value">
+               <number>10000</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTextEdit" name="textEditAlternativeText"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="tabPreprocessing">
+       <attribute name="title">
+        <string>Preprocessing</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="preprocessingVerticalLayout">
+        <item>
+         <layout class="QHBoxLayout" name="preprocessingHorizontalLayout">
+          <item>
+           <widget class="QPushButton" name="clearPreprocessingButton">
+            <property name="text">
+             <string>Clear</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="applyPreprocessingButton">
+            <property name="text">
+             <string>Apply</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="preprocessingComboBox">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>0</height>
+             </size>
+            </property>
+            <item>
+             <property name="text">
+              <string>Preprocessing 1</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacerPreprocessing">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QWidget" name="preprocessingResultWidget" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>100</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabTranslations">
+       <attribute name="title">
+        <string>Translations</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="translationsVerticalLayout">
+        <item>
+         <layout class="QHBoxLayout" name="translationsHorizontalLayout">
+          <item>
+           <widget class="QPushButton" name="clearTranslationsButton">
+            <property name="text">
+             <string>Clear</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="applyTranslationsButton">
+            <property name="text">
+             <string>Apply</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="addTranslationButton">
+            <property name="text">
+             <string>Add</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="editTranslationButton">
+            <property name="text">
+             <string>Edit</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="deleteTranslationButton">
+            <property name="text">
+             <string>Delete</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacerTranslations">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="translationsTableHorizontalLayout">
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QTableWidget" name="translationsTableWidget">
+            <attribute name="horizontalHeaderMinimumSectionSize">
+             <number>200</number>
+            </attribute>
+            <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
+            <column>
+             <property name="text">
+              <string>Original</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Replacement</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item>
+           <layout class="QFormLayout" name="translationsFormLayout">
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelOriginalText">
+              <property name="text">
+               <string>Original</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelReplacementText">
+              <property name="text">
+               <string>Replacement</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="lineEditOriginalText"/>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="lineEditReplacementText"/>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabClustering">
+       <attribute name="title">
+        <string>Clustering</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="clusteringVerticalLayout">
+        <item>
+         <layout class="QHBoxLayout" name="clusteringHorizontalLayout">
+          <item>
+           <widget class="QPushButton" name="clearClusteringButton">
+            <property name="text">
+             <string>Clear</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="applyClusteringButton">
+            <property name="text">
+             <string>Apply</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="addClusterButton">
+            <property name="text">
+             <string>Add</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="editClusterButton">
+            <property name="text">
+             <string>Edit</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="deleteClusterButton">
+            <property name="text">
+             <string>Delete</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacerClustering">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="generateClusterButton">
+            <property name="text">
+             <string>Generate</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="runTaggerButton">
+            <property name="text">
+             <string>Run Tagger</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="runParserButton">
+            <property name="text">
+             <string>Run Parser</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="clusteringDetailsHorizontalLayout">
+          <item>
+           <widget class="QTreeWidget" name="clusteringTreeWidget">
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item>
+           <layout class="QFormLayout" name="clusteringFormLayout">
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelClusterName">
+              <property name="text">
+               <string>Name</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelClusterParts">
+              <property name="text">
+               <string>Parts</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="labelClusterPatterns">
+              <property name="text">
+               <string>Patterns</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="labelClusterCode">
+              <property name="text">
+               <string>Code</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="lineEditClusterName"/>
+            </item>
+            <item row="1" column="1">
+             <layout class="QVBoxLayout" name="clusterPartsVerticalLayout">
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <layout class="QHBoxLayout" name="clusterPartsHorizontalLayout">
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="addPartButton">
+                  <property name="text">
+                   <string>Add</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="editPartButton">
+                  <property name="text">
+                   <string>Edit</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="deletePartButton">
+                  <property name="text">
+                   <string>Delete</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacerClusterParts">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QListWidget" name="clusterPartsListWidget"/>
+              </item>
+             </layout>
+            </item>
+            <item row="2" column="1">
+             <layout class="QVBoxLayout" name="clusterPatternsVerticalLayout">
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <layout class="QHBoxLayout" name="clusterPatternsHorizontalLayout">
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="addPatternButton">
+                  <property name="text">
+                   <string>Add</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="editPatternButton">
+                  <property name="text">
+                   <string>Edit</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="deletePatternButton">
+                  <property name="text">
+                   <string>Delete</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacerClusterPatterns">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QListWidget" name="clusterPatternsListWidget"/>
+              </item>
+             </layout>
+            </item>
+            <item row="4" column="1">
+             <widget class="QWidget" name="clusterCodeWidget" native="true">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>200</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="labelClusterConfigs">
+              <property name="text">
+               <string>configs</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <layout class="QFormLayout" name="clusterConfigsFormLayout">
+              <item row="0" column="0">
+               <widget class="QLabel" name="labelMinLength">
+                <property name="text">
+                 <string>Min Length</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="lineEditMinLength">
+                <property name="text">
+                 <string>200</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="labelMaxLength">
+                <property name="text">
+                 <string>Max Length</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="lineEditMaxLength">
+                <property name="text">
+                 <string>100</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="labelPartsWeight">
+                <property name="text">
+                 <string>Parts weight</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="labelRegexWeight">
+                <property name="text">
+                 <string>Regex weight</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLineEdit" name="lineEditPartsWeight">
+                <property name="text">
+                 <string>1</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLineEdit" name="lineEditRegexWeight">
+                <property name="text">
+                 <string>1</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabExport">
+       <attribute name="title">
+        <string>Export</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1070</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNewProject"/>
+    <addaction name="actionOpenProject"/>
+    <addaction name="actionSaveProject"/>
+   </widget>
+   <addaction name="menuFile"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionNewProject">
+   <property name="text">
+    <string>New Project</string>
+   </property>
+  </action>
+  <action name="actionOpenProject">
+   <property name="text">
+    <string>Open Project</string>
+   </property>
+  </action>
+  <action name="actionSaveProject">
+   <property name="text">
+    <string>Save Project</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
